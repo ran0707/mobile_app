@@ -19,6 +19,7 @@ import 'package:testapp01/widgets/recents_reports.dart';
 import 'package:testapp01/widgets/weatherCard.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_v2/tflite_v2.dart';
+import '../../result/recommendation.dart';
 import '../cultivation/cultivation_main.dart';
 import 'package:testapp01/models/detected_object.dart';
 import 'package:image/image.dart' as img;
@@ -160,6 +161,32 @@ class _Page0State extends State<Home> {
       confidence = (recognitions[0]['confidence'] * 100);
       label = recognitions[0]['label'].toString();
     });
+    String symptoms = '';
+    String recommendation = '';
+    if(label == "Gall Midge"){
+      symptoms = 'The symptoms appear predominantly on the leaves, but occasionally also on the buds, inflorescences and young fruits of mango trees';
+      recommendation = 'Dipping germinated seed in 0.2% chlorpyrifos solution for 3 hours before sowing give protection up to 30 days. In transplanted crop the root of seedlings may be dipped in 0.02% chlorpyrifos suspension for 12 hours prior to planting.';
+    }else if(label == "Sooty Mould"){
+      symptoms = 'The disease in the field is recognized by the presence of a black velvety coating, i.e., sooty mould on the leaf surface. In severe cases the trees turn completely black due to the presence of mould over the entire surface of twigs and leaves.';
+      recommendation = 'Spraying the leaves with insecticidal soap can help soften the sooty coating. Spray late in the day so the soap remains moist for as long as possible. If you can spray a few hours before a heavy rain is forecast the rain will be better able to remove the sooty mold';
+    }else{
+      symptoms = ' is this healthy leaf ';
+      recommendation= 'Healthy leaf detected. Improve yield by ensuring proper watering and nutrient supply.';
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RecommendationPage(
+          image: filePath!,
+          label: label,
+          accuracy: confidence,
+          symptoms: symptoms,
+          recommendation: recommendation,
+        ),
+      ),
+    );
+
   }
 
   @override
@@ -431,50 +458,50 @@ class _Page0State extends State<Home> {
               SizedBox(
                 height: 20.0,
               ),
-              Container(
-                height: 280,
-                width: 280,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  // image: DecorationImage(
-                  //   image: AssetImage('Images/upload.jpg'),
-                  // ),
-                ),
-                child: filePath == null
-                    ? const Text(' ')
-                    : Image.file(
-                        filePath!,
-                        fit: BoxFit.fill,
-                      ),
-              ),
-              const SizedBox(
-                height: 12.0,
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      "The Accuracy is ${confidence.toStringAsFixed(0)} %",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   height: 280,
+              //   width: 280,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //     // image: DecorationImage(
+              //     //   image: AssetImage('Images/upload.jpg'),
+              //     // ),
+              //   ),
+              //   child: filePath == null
+              //       ? const Text(' ')
+              //       : Image.file(
+              //           filePath!,
+              //           fit: BoxFit.fill,
+              //         ),
+              // ),
+              // const SizedBox(
+              //   height: 12.0,
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(10),
+              //   child: Column(
+              //     children: [
+              //       Text(
+              //         label,
+              //         style: TextStyle(
+              //           fontSize: 18,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         height: 12,
+              //       ),
+              //       Text(
+              //         "The Accuracy is ${confidence.toStringAsFixed(0)} %",
+              //         style: TextStyle(fontSize: 18),
+              //       ),
+              //       const SizedBox(
+              //         height: 12.0,
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
