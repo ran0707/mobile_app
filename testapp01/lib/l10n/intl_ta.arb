@@ -1,0 +1,10 @@
+{
+  "title": "வணக்கம் உலகம்",
+  "message": "Flutter க்கு வரவேற்கிறோம்",
+  "@title": {
+    "description": "Title for the application"
+  },
+  "@message": {
+    "description": "Welcome message for the application"
+  }
+}
