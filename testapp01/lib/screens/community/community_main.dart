@@ -16,7 +16,7 @@ class _CommunityMainState extends State<CommunityMain> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: !_isSearching
-        ? Text('Green Communtiy')
+        ? const Text('Green Communtiy')
             : TextField(
           controller: _searchController,
           decoration: const InputDecoration(
@@ -30,7 +30,7 @@ class _CommunityMainState extends State<CommunityMain> {
             contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 40.0),
             prefixIcon: Icon(Icons.search, color: Color(0xff8e8e8e),),
           ),
-          style: TextStyle(color: Colors.black, fontSize: 16.0),
+          style: const TextStyle(color: Colors.black, fontSize: 16.0),
         ),
         actions: <Widget>[
           IconButton(
@@ -52,10 +52,10 @@ class _CommunityMainState extends State<CommunityMain> {
           Container(
             padding: const EdgeInsets.all(16.0),
             color: Colors.blueGrey[100],
-            child: Row(
+            child: const Row(
               children: [
-                const Icon(Icons.announcement),
-                const SizedBox(width: 10.0),
+                Icon(Icons.announcement),
+                SizedBox(width: 10.0),
                 Text(
                   'Join our Discord server for live discussions!',
                   style: TextStyle(color: Colors.blue),
@@ -77,15 +77,15 @@ class _CommunityMainState extends State<CommunityMain> {
             runSpacing: 4.0,
             children: [
               Chip(
-                label: Text('State Management'),
+                label: const Text('State Management'),
                 backgroundColor: Colors.blue[100],
               ),
               Chip(
-                label: Text('Animations'),
+                label: const Text('Animations'),
                 backgroundColor: Colors.blue[100],
               ),
               Chip(
-                label: Text('Networking'),
+                label: const Text('Networking'),
                 backgroundColor: Colors.blue[100],
               ),
               // Add more chips as needed
@@ -100,14 +100,14 @@ class _CommunityMainState extends State<CommunityMain> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
           ),
-          ListTile(
+          const ListTile(
             leading: CircleAvatar(
               backgroundImage: NetworkImage('https://placeimg.com/64/64/people'),
             ),
             title: Text('John Doe'),
             subtitle: Text('Flutter enthusiast'),
           ),
-          ListTile(
+          const ListTile(
             leading: CircleAvatar(
               backgroundImage: NetworkImage('https://placeimg.com/64/64/tech'),
             ),

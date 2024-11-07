@@ -47,7 +47,7 @@ class _VendorMainState extends State<VendorMain> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: !_isSearching
-            ? Text('Green shop')
+            ? const Text('Green shop')
             : TextField(
           controller: _searchController,
           decoration: const InputDecoration(
@@ -65,7 +65,7 @@ class _VendorMainState extends State<VendorMain> {
               color: Color(0xff8e8e8e),
             ),
           ),
-          style: TextStyle(color: Colors.black, fontSize: 16.0),
+          style: const TextStyle(color: Colors.black, fontSize: 16.0),
         ),
         actions: <Widget>[
           IconButton(
@@ -82,7 +82,7 @@ class _VendorMainState extends State<VendorMain> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: _isSearching
             ? _buildSearchResults(widget.vendors)
             : _buildVendorList(widget.vendors),
@@ -108,7 +108,7 @@ class _VendorMainState extends State<VendorMain> {
     }).toList();
 
     return filteredVendors.isEmpty
-        ? Center(child: Text('No result found'))
+        ? const Center(child: Text('No result found'))
         : _buildVendorList(filteredVendors);
   }
 }
@@ -121,16 +121,16 @@ class _VendorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Card(
-        color: Color(0xffd7ecfd),
+        color: const Color(0xffd7ecfd),
         elevation: 4.0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-              Container(
+              SizedBox(
                 width: 100.0,
                 height: 100.0,
                 child: ClipRRect(
@@ -141,7 +141,7 @@ class _VendorCard extends StatelessWidget {
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         color: Colors.grey,
-                        child: Icon(
+                        child: const Icon(
                           Icons.error,
                           color: Colors.red,
                           size: 50.0,
@@ -168,7 +168,7 @@ class _VendorCard extends StatelessWidget {
                   children: [
                     Text(
                       vendor.name,
-                      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4.0),
                     Text(

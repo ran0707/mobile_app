@@ -1,3 +1,5 @@
+// lib/bloc/phone_verification/phone_verification_event.dart
+
 import 'package:equatable/equatable.dart';
 
 abstract class PhoneVerificationEvent extends Equatable {
@@ -7,41 +9,23 @@ abstract class PhoneVerificationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ValidatePhoneNumber extends PhoneVerificationEvent {
-  final String phoneNumber;
-
-  const ValidatePhoneNumber(this.phoneNumber);
-
-  @override
-  List<Object> get props => [phoneNumber];
-}
-
-class RequestOtp extends PhoneVerificationEvent {
-  final String phoneNumber;
-  final String userName;
-  final String streetCity;
-  final String adminLocality;
+class RegisterUser extends PhoneVerificationEvent {
+  final String name;
+  final String phone;
+  final String address;
+  final String city;
+  final String state;
   final String country;
-  final String postalCode;
 
-  const RequestOtp(
-    this.phoneNumber,
-    this.userName,
-    this.streetCity,
-    this.adminLocality,
-    this.country,
-    this.postalCode,
-  );
+  const RegisterUser({
+    required this.name,
+    required this.phone,
+    required this.address,
+    required this.city,
+    required this.state,
+    required this.country,
+  });
 
   @override
-  List<Object> get props => [
-        phoneNumber,
-        userName,
-        streetCity,
-        adminLocality,
-        country,
-        postalCode,
-      ];
+  List<Object> get props => [name, phone, address, city, state, country];
 }
-
-

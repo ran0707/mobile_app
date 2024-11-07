@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +10,7 @@ class Card2Report extends StatefulWidget {
   final ValueChanged<int> onVote;
   // final List<String> pestNames;
 
-   Card2Report({ required this.initialVotes, required this.onVote, });
+   const Card2Report({super.key,  required this.initialVotes, required this.onVote, });
 
   @override
   State<Card2Report> createState() => _Card2ReportState();
@@ -164,14 +163,14 @@ final List<String> _pestNames = [
                   style: const TextStyle(color: Colors.white, fontSize: 22.0),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 16.0,),
+                const SizedBox(height: 16.0,),
                 for(var pest in _pestNames)
                   Text(
                     '$pest : ${_pestVotes[pest]} votes',
                     style: const TextStyle(color: Colors.white, fontSize: 14.0),
                     //textAlign: TextAlign.left,
                   ),
-                SizedBox(height: 16.0,),
+                const SizedBox(height: 16.0,),
                   Row(
                     children: [
                       Text(
@@ -179,7 +178,7 @@ final List<String> _pestNames = [
                         style: const TextStyle(color: Colors.white, fontSize: 16.0),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(width: 10.0,),
+                      const SizedBox(width: 10.0,),
                       Text(
                         'Yesterday Report: $_yesterdatVotes',
                         style: const TextStyle(color: Colors.white,fontSize: 16.0),

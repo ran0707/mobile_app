@@ -1,16 +1,32 @@
-abstract class PhoneVerificationState{ }
+// lib/bloc/phone_verification/phone_verification_state.dart
 
-class PhoneInitial extends PhoneVerificationState { }
+import 'package:equatable/equatable.dart';
 
-class PhoneValid extends PhoneVerificationState { }
+abstract class PhoneVerificationState extends Equatable {
+  const PhoneVerificationState();
 
-class PhoneInvalid extends PhoneVerificationState { }
+  @override
+  List<Object> get props => [];
+}
 
-class PhoneVerificationLoading extends PhoneVerificationState { }
+class PhoneVerificationInitial extends PhoneVerificationState {}
 
-class PhoneVerificationSuccess extends PhoneVerificationState { }
+class PhoneVerificationLoading extends PhoneVerificationState {}
 
-class PhoneVerificationFailure extends PhoneVerificationState{
+class PhoneVerificationSuccess extends PhoneVerificationState {
+  final String message;
+
+  const PhoneVerificationSuccess({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class PhoneVerificationFailure extends PhoneVerificationState {
   final String error;
-  PhoneVerificationFailure(this.error);
+
+  const PhoneVerificationFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

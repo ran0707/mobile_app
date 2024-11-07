@@ -1,17 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:testapp01/bloc/phone_verification/phone_verification_bloc.dart';
 import 'package:testapp01/bloc/user_verification/user_verification_bloc.dart';
-import 'package:testapp01/bloc/user_verification/user_verification_event.dart';
 import 'package:testapp01/bloc/user_verification/user_verification_state.dart';
-import 'package:testapp01/screens/userAuth/phoneVerify.dart';
-import 'package:testapp01/services/location_services.dart';
 
-import '../dashboard/home.dart';
 
 class UserVerification extends StatefulWidget {
   //final PhoneVerificationBloc phoneVerificationBloc;
@@ -99,7 +92,7 @@ class _UserVerificationState extends State<UserVerification> {
           child: BlocBuilder<LocationBloc, LocationState>(
             builder: (context, state) {
               if ( isLoading) {
-                return  Center(child: CircularProgressIndicator());
+                return  const Center(child: CircularProgressIndicator());
               }
               if (state.error.isNotEmpty) {
                 return Center(child: Text(state.error));

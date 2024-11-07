@@ -1,11 +1,11 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:testapp01/screens/community/community_main.dart';
 import 'package:testapp01/screens/dashboard/pest_season_main.dart';
 
 class DateSeasonCard extends StatefulWidget {
+  const DateSeasonCard({super.key});
+
   @override
   State<DateSeasonCard> createState() => _DateSeasonCardState();
 }
@@ -22,7 +22,7 @@ class _DateSeasonCardState extends State<DateSeasonCard> {
       onTap: () async {
         print('Navigation to pestseasonMain ');
         final result = await Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PestSeasonMain()));
+            context, MaterialPageRoute(builder: (context) => const PestSeasonMain()));
         print('Navigation returned result: $result');
         if (result != null && result is String) {
           print("Returned pest name: $result");
@@ -34,7 +34,7 @@ class _DateSeasonCardState extends State<DateSeasonCard> {
         }
       },
       child: Card(
-        color: Color(0xfffad9bf),
+        color: const Color(0xfffad9bf),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -50,23 +50,23 @@ class _DateSeasonCardState extends State<DateSeasonCard> {
                 height: 8.0,
               ),
               if (_pestName != null)
-                Container(
+                SizedBox(
                   height: 45.0,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: _pestName!.split(', ').length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.only(right: 2.0),
+                        padding: const EdgeInsets.only(right: 2.0),
                         child: Card(
                           //color: Color(0xfffbee52),
                           child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(horizontal: 8.0, ),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0, ),
                             child: Text(
                               _pestName!.split(', ')[index],
 
-                              style: TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16.0),
                             ),
                           ),
                         ),
@@ -78,10 +78,10 @@ class _DateSeasonCardState extends State<DateSeasonCard> {
                 Container(
                   height: 30.0,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'Tap to see pest details',
                       style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500),

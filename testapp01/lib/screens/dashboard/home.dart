@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:testapp01/chatbot/chatbot_main.dart';
 import 'package:testapp01/screens/community/community_main.dart';
@@ -17,14 +15,10 @@ import 'package:testapp01/widgets/bottomButton.dart';
 import 'package:testapp01/widgets/date_season_card.dart';
 import 'package:testapp01/widgets/recents_reports.dart';
 import 'package:testapp01/widgets/weatherCard.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import '../../result/recommendation.dart';
 import '../cultivation/cultivation_main.dart';
 import 'package:testapp01/models/detected_object.dart';
-import 'package:image/image.dart' as img;
-import 'package:tflite_flutter/tflite_flutter.dart' as tfl;
-import 'package:path_provider/path_provider.dart';
 
 import 'dart:developer' as devtools;
 
@@ -369,7 +363,7 @@ class _Page0State extends State<Home> {
 
   void signOut() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => PhoneVerification()));
+        context, MaterialPageRoute(builder: (context) => const PhoneVerification()));
   }
 
   void _updateVotes(int newVotes) {
@@ -408,13 +402,13 @@ class _Page0State extends State<Home> {
   void _chatbot() {
     print('chat bot btn worked');
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ChatBotMain()));
+        context, MaterialPageRoute(builder: (context) => const ChatBotMain()));
   }
 
   @override
   Widget build(BuildContext context) {
     bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -426,7 +420,7 @@ class _Page0State extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(child: DateSeasonCard()),
+                  const Expanded(child: DateSeasonCard()),
                   const SizedBox(
                     width: 8.0,
                   ),
@@ -455,7 +449,7 @@ class _Page0State extends State<Home> {
                 primaryLocality: widget.locality,
                 fallbackLocality: widget.locality,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               // Container(
@@ -506,21 +500,21 @@ class _Page0State extends State<Home> {
           ),
         ),
       ),
-      CultivationMain(),
-      CommunityMain(),
+      const CultivationMain(),
+      const CommunityMain(),
       FutureBuilder(
           future: _fetchVendors(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text('Error loading vendors'),
               );
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text('No vendors available'),
               );
             } else {
@@ -541,14 +535,14 @@ class _Page0State extends State<Home> {
                 title: Text(_getGreetings()),
                 actions: [
                   IconButton(
-                    icon: CircleAvatar(
+                    icon: const CircleAvatar(
                       backgroundColor: Color(0xffdddddd),
                       child: Icon(CupertinoIcons.person, color: Colors.black),
                     ),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                        MaterialPageRoute(builder: (context) => const ProfilePage()),
                       );
                     },
                   ),
@@ -560,7 +554,7 @@ class _Page0State extends State<Home> {
             PageView(
               controller: _pageController,
               onPageChanged: _onPageChanged,
-              children: _pages,
+              children: pages,
             ),
             Positioned(
               right: 15.0,
@@ -571,12 +565,12 @@ class _Page0State extends State<Home> {
                 child: FloatingActionButton(
                   onPressed: _chatbot,
                   tooltip: 'Chatbot',
-                  child: Icon(
+                  backgroundColor: const Color(0xffffff00),
+                  child: const Icon(
                     CupertinoIcons.chat_bubble_2,
                     size: 30.0,
                     color: Colors.black,
                   ),
-                  backgroundColor: Color(0xffffff00),
                 ),
               ),
             ),
@@ -589,9 +583,9 @@ class _Page0State extends State<Home> {
                 //mini: true,
                 onPressed: clickImage,
                 tooltip: 'scan image',
-                shape: StadiumBorder(),
+                shape: const StadiumBorder(),
+                backgroundColor: const Color(0xff7c5b29),
                 child: const Icon(CupertinoIcons.camera),
-                backgroundColor: Color(0xff7c5b29),
               ),
         bottomNavigationBar: BottomButton(
           selectedIndex: _selectIndex,

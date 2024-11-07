@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:testapp01/screens/weather/weather_models/weather.dart';
@@ -8,7 +7,7 @@ import 'package:testapp01/services/weather_service.dart';
 class WeatherForecastingPage extends StatefulWidget {
   final String locality;
 
-  WeatherForecastingPage({required this.locality});
+  const WeatherForecastingPage({super.key, required this.locality});
 
   @override
   _WeatherForecastingPageState createState() => _WeatherForecastingPageState();
@@ -69,34 +68,34 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
     return Scaffold(
      // backgroundColor: Colors.amberAccent,
       appBar: AppBar(
-        title: Text('Weather Forecast'),
+        title: const Text('Weather Forecast'),
        // backgroundColor: Colors.amberAccent,
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : weather == null
-              ? Center(child: Text('Weather data unavailable'))
+              ? const Center(child: Text('Weather data unavailable'))
               : SingleChildScrollView(
 
                   child: Padding(
-                    padding: EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 25.0),
                           child: Row(
                             children: [
                               Expanded(
                                 child: Text(
                                   "${weather!.temperature.toStringAsFixed(1)}°C \n${widget.locality}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 32.0,
                                       fontWeight: FontWeight.w500),
                                 ),
                               ),
-                              SizedBox(width: 20.0),
+                              const SizedBox(width: 20.0),
                               Image.network(
                                 "http://openweathermap.org/img/wn/${weather!.icon}@2x.png",
                                 width: 85,
@@ -105,8 +104,8 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10.0),
-                        Card(
+                        const SizedBox(height: 10.0),
+                        const Card(
                           color: Color(0xffddffdd),
                           elevation: 2.0,
                           shape: StadiumBorder(),
@@ -123,9 +122,9 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 10.0),
-                        Text("Daily Summary", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),),
-                        SizedBox(height: 10.0),
+                        const SizedBox(height: 10.0),
+                        const Text("Daily Summary", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),),
+                        const SizedBox(height: 10.0),
                         buildInfoCard([
                           InfoCardData(
                               icon: Icons.air,
@@ -140,12 +139,12 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                               value: "${weather!.visibility / 1000} Km",
                               label: "Visibility"),
                         ]),
-                        SizedBox(height: 10.0),
-                        Text("Weekly forecast", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),),
-                        SizedBox(height: 10.0),
+                        const SizedBox(height: 10.0),
+                        const Text("Weekly forecast", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),),
+                        const SizedBox(height: 10.0),
                         forecast != null && forecast!.isNotEmpty
                             ? Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 child: SizedBox(
                                   height: 280.0,
                                   child: ListView.builder(
@@ -155,13 +154,13 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                                       final forecastItem = forecast![index];
                                       return Container(
                                         width: 190,
-                                        margin: EdgeInsets.all(8.0),
-                                        padding: EdgeInsets.all(8.0),
+                                        margin: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
-                                          color: Color(0xffbce0fb),
+                                          color: const Color(0xffbce0fb),
                                           borderRadius:
                                               BorderRadius.circular(10.0),
-                                          boxShadow: [
+                                          boxShadow: const [
                                             BoxShadow(
                                               color: Colors.black26,
                                               blurRadius: 5.0,
@@ -175,7 +174,7 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                                             Text(
                                               formatTimestamp(
                                                   forecastItem.dateTime),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 16.0,
                                                   fontWeight: FontWeight.w300),
                                             ),
@@ -187,24 +186,24 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                                             // SizedBox(height: 8.0),
                                             Text(
                                               '${forecastItem.temperature.toStringAsFixed(1)}°C',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 18.0,
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            const SizedBox(height: 8.0),
                                             Text(
                                               '${forecastItem.humidity}% Humidity',
-                                              style: TextStyle(fontSize: 14.0),
+                                              style: const TextStyle(fontSize: 14.0),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            const SizedBox(height: 8.0),
                                             Text(
                                               '${(forecastItem.windSpeed * 3.6).toStringAsFixed(2)} km/h Wind',
-                                              style: TextStyle(fontSize: 14.0),
+                                              style: const TextStyle(fontSize: 14.0),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            const SizedBox(height: 8.0),
                                             Text(
                                               forecastItem.description,
-                                              style: TextStyle(fontSize: 14.0),
+                                              style: const TextStyle(fontSize: 14.0),
                                               textAlign: TextAlign.center,
                                             ),
                                           ],
@@ -214,7 +213,7 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                                   ),
                                 ),
                               )
-                            : Center(
+                            : const Center(
                                 child: Text('No forecast data available'),
                               ),
 
@@ -232,7 +231,7 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
         borderRadius: BorderRadius.circular(30.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: data.map((item) {
@@ -244,17 +243,17 @@ class _WeatherForecastingPageState extends State<WeatherForecastingPage> {
                   size: 30.0,
                   color: Colors.blue,
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
                   item.value,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
                   item.label,
-                  style: TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 16.0),
                 ),
               ],
             );

@@ -47,12 +47,8 @@ class WeatherService {
         final Map<String,dynamic> data = json.decode(response.body);
         final List<dynamic> forecastList = data['list'];
 
-        if(forecastList != null){
-          return forecastList.map((item) => Forecast.fromJson(item )).toList();
-        }else{
-          return[];
-        }
-      }else{
+        return forecastList.map((item) => Forecast.fromJson(item )).toList();
+            }else{
         print('Failed to load forecast data: ${response.statusCode} ${response.reasonPhrase}');
         return null;
       }

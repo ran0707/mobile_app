@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,8 +16,8 @@ class RecommendationPage extends StatefulWidget {
     required this.accuracy,
     required this.symptoms,
     required this.recommendation,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<RecommendationPage> createState() => _RecommendationPageState();
@@ -43,7 +42,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Result'),
+        title: const Text('Result'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -52,9 +51,9 @@ class _RecommendationPageState extends State<RecommendationPage> {
           children: [
             Text(
               widget.label,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             AspectRatio(
               aspectRatio: 1.0, // 1:1 ratio
               child: Container(
@@ -68,14 +67,14 @@ class _RecommendationPageState extends State<RecommendationPage> {
                 width: double.infinity,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton.icon(
                   onPressed: _shareContent,
-                  icon: Icon(Icons.share),
-                  label: Text('Share'),
+                  icon: const Icon(Icons.share),
+                  label: const Text('Share'),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -84,10 +83,10 @@ class _RecommendationPageState extends State<RecommendationPage> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Card(
               color: Colors.blue.shade50,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -96,14 +95,14 @@ class _RecommendationPageState extends State<RecommendationPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Symptoms:',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       widget.symptoms,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
@@ -111,7 +110,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
             ),
             Card(
               color: Colors.green.shade50,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -120,14 +119,14 @@ class _RecommendationPageState extends State<RecommendationPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Treatment:',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       widget.recommendation,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),

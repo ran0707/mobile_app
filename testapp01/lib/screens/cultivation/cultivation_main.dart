@@ -1,14 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testapp01/bloc/cultivation//cultivation_page_event.dart';
 import 'package:testapp01/bloc/cultivation//cultivation_page_state.dart';
 import 'package:testapp01/bloc/cultivation//cultivation_page_bloc.dart';
-import 'package:testapp01/screens/cultivation/teaCultivation/tea_cultivation_main.dart';
-import 'package:testapp01/screens/cultivation/teaDisease/tea_disease_main.dart';
-import 'package:testapp01/screens/cultivation/teaPesticides/tea_pesticides_main.dart';
-import 'package:testapp01/screens/cultivation/teaRecipe/tea_recipe_main.dart';
 
 
 class CultivationMain extends StatefulWidget {
@@ -70,7 +64,7 @@ class _CultivationMainState extends State<CultivationMain> {
                       state.items.asMap().entries.map((entry){
                         int index = entry.key;
                         ContentItem item = entry.value;
-                         Color? cardColor = Color(0xffd2e3fc) ;  //0xffd2e3fc
+                         Color? cardColor = const Color(0xffd2e3fc) ;  //0xffd2e3fc
                         return  _buildCard(item, context, cardColor, index);
                       }).toList(),
                 ),

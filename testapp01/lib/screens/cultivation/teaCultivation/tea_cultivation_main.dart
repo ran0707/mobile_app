@@ -13,7 +13,7 @@ class _TeaCultivationMainState extends State<TeaCultivationMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('item.title'),
+        title: const Text('item.title'),
       ),
     );
   }

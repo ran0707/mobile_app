@@ -13,7 +13,7 @@ class _TeaRecipeMainState extends State<TeaRecipeMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('item.title'),
+        title: const Text('item.title'),
       ),
     );
   }

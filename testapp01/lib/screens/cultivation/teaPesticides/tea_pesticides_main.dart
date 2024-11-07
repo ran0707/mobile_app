@@ -13,7 +13,7 @@ class _TeaPesticidesMainState extends State<TeaPesticidesMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('item.title'),
+        title: const Text('item.title'),
       ),
     );
   }

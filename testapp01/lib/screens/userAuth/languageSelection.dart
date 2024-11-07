@@ -1,148 +1,119 @@
+// lib/screens/userAuth/languageSelection.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testapp01/bloc/language_selection/language_state.dart';
-import 'package:testapp01/screens/userAuth/phoneVerify.dart';
-import 'package:testapp01/screens/userAuth/userverify.dart';
 import '../../bloc/language_selection/language_bloc.dart';
 import '../../bloc/language_selection/language_event.dart';
-import '../../localization/app_localizations.dart';
+import '../../bloc/language_selection/language_state.dart';
+import 'phoneVerify.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
+class LanguageSelection extends StatelessWidget {
+  const LanguageSelection({Key? key}) : super(key: key);
 
-class LanguageSelection extends StatefulWidget {
+  Future<void> _selectLanguage(
+      BuildContext context, String languageCode) async {
+    context.read<LanguageBloc>().add(SelectLanguage(languageCode));
 
-  const LanguageSelection({super.key});
-
-  @override
-  State<LanguageSelection> createState() => _LanguageSelectionState();
-}
-
-class _LanguageSelectionState extends State<LanguageSelection> {
-  final List<Map<String, String>> languages = [
-    {'name': 'தமிழ்', 'image': 'Images/tamil.png'},
-    {'name': 'English', 'image': 'Images/english.png'},
-    {'name': 'हिंदी', 'image': 'Images/hindi.png'},
-    {'name': 'অসমীয়া', 'image': 'Images/assameses.png'},
-    {'name': 'తెలుగు', 'image': 'Images/Telugu.png'},
-    {'name': 'ಕನ್ನಡ', 'image': 'Images/Kannada.png'},
-    {'name': 'മലയാളം', 'image': 'Images/malayalam.png'},
-    {'name': 'ਪੰਜਾਬੀ', 'image': 'Images/punjabi.png'},
-  ];
-
-
-  // String? selectedLanguage;
-  //
-  // void selectLanguage(String language) async{
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   await prefs.setString('selectedLanguage', language);
-  //   context.read<LanguageBloc>().add(SelectLanguage(language));
-  //
-  //   setState(() {
-  //     selectedLanguage = language;
-  //   });
-  // }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Select Your Language'),
-        // actions: const [Icon(Icons.more_vert_outlined)],
-      ),
-
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,  //number of column
-              childAspectRatio: 5 / 3, // aspect ration for each card
-              crossAxisSpacing: 15, // hor space
-              mainAxisSpacing: 15, //ver space
-            ),
-            itemCount: languages.length,
-            itemBuilder: (context, index){
-              final language = languages[index]['name']!;
-              final image = languages[index]['image']!;
-              return BlocBuilder<LanguageBloc, LanguageState>(builder: (context, state) {
-                final isSelected = state is LanguageSelected && state.selectedLanguage == language;
-                return LanguageCard(
-                  language: language,
-                  image: image,
-                  isSelected: isSelected,
-                  onSelect:(selectedLanguage){
-                    context.read<LanguageBloc>().add(SelectLanguage(selectedLanguage));
-                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PhoneVerification()));
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserVerification()));
-                  }
-                );
-              });
-            }
-        ),
+    // Navigate to Phone Verification Page after selecting language
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const PhoneVerification(),
       ),
     );
   }
 
-
-}
-
-
-
-class LanguageCard extends StatelessWidget {
-
-  final String language;
-  final String image;
-  final bool isSelected;
-  final Function(String) onSelect;
-
-
-
-
-  const LanguageCard({
-    super.key,
-    required this.language,
-    required this.image,
-    required this.isSelected,
-    required this.onSelect
-  });
+  // Define a list of languages
+  final List<Map<String, String>> languages = const [
+    {'name': 'English', 'code': 'en'},
+    {'name': 'தமிழ்', 'code': 'ta'},
+    {'name': 'हिंदी', 'code': 'hi'},
+    {'name': 'অসমীয়া', 'code': 'as'},
+    {'name': 'తెలుగు', 'code': 'te'},
+    {'name': 'ಕನ್ನಡ', 'code': 'kn'},
+    {'name': 'മലയാളം', 'code': 'ml'},
+    {'name': 'ਪੰਜਾਬੀ', 'code': 'pa'},
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Color(0xffdfe5fa) ,
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(
-          color: isSelected ? Colors.black : Colors.transparent,
-          width: .80,
-        ),
-      ),
-      child: InkWell(
-        onTap: () {
-          onSelect(language);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$language selected')),
-          );
-        },
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(image, width: 30, height: 30,),
-                const SizedBox(height: 14.0,),
-          
-                Text(
-                  language,
-                  style: TextStyle(fontSize: 16.0,),
-                ),
-              ],
+    return BlocBuilder<LanguageBloc, LanguageState>(
+      builder: (context, state) {
+        String selectedLanguage;
+        if (state is LanguageSelected) {
+          selectedLanguage = state.selectedLanguage;
+        } else if (state is LanguageInitial) {
+          selectedLanguage = state.selectedLanguage;
+        } else {
+          selectedLanguage = 'en'; // Default to English
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              FlutterI18n.translate(context, 'language_selection_title'),
             ),
           ),
+          body: ListView.builder(
+            padding: const EdgeInsets.all(16.0),
+            itemCount: languages.length,
+            itemBuilder: (context, index) {
+              final language = languages[index];
+              return _buildLanguageOption(
+                context,
+                languageName: language['name']!,
+                languageCode: language['code']!,
+                isSelected: selectedLanguage == language['code'],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  // Helper method to build each language option with border and tick
+  Widget _buildLanguageOption(
+      BuildContext context, {
+        required String languageName,
+        required String languageCode,
+        required bool isSelected,
+      }) {
+    return GestureDetector(
+      onTap: () => _selectLanguage(context, languageCode),
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        padding:
+        const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(
+            color: Colors.grey.shade300, // Border color
+            width: 1.0, // Border width
+          ),
+          borderRadius: BorderRadius.circular(8.0), // Rounded corners
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 4.0,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                languageName,
+                style: const TextStyle(fontSize: 16.0),
+              ),
+            ),
+            if (isSelected)
+              const Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+          ],
         ),
       ),
     );

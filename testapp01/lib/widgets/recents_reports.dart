@@ -5,14 +5,14 @@ class RecentReports extends StatelessWidget {
   final bool isIncrease;
   //final VoidCallback onVote;
 
-  RecentReports({required this.votes, required this.isIncrease, });
+  const RecentReports({super.key, required this.votes, required this.isIncrease, });
 
 
   @override
   Widget build(BuildContext context) {
 
     return Card(
-      color: Color(0xffb0e1aa),
+      color: const Color(0xffb0e1aa),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -26,7 +26,7 @@ class RecentReports extends StatelessWidget {
             const SizedBox(height: 8.0,),
             Row(
               children: [
-                SizedBox(width: 40.0,),
+                const SizedBox(width: 40.0,),
                 Text(
                   '$votes',
                   style:const  TextStyle(fontSize: 20.0, ),

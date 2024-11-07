@@ -1,15 +1,20 @@
-// otp_verification_event.dart
-abstract class OtpVerificationEvent {}
+// lib/bloc/otp_verification/otp_verification_event.dart
 
-class SendOtp extends OtpVerificationEvent {
-  final String phone;
-  final String name;
+import 'package:equatable/equatable.dart';
 
-  SendOtp(this.phone, this.name);
+abstract class OtpVerificationEvent extends Equatable {
+  const OtpVerificationEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
 class VerifyOtp extends OtpVerificationEvent {
-  final String otp;
+  final String phone;
+  final String otpCode; // Note: 'otpCode' is the parameter name
 
-  VerifyOtp(this.otp);
+  const VerifyOtp({required this.phone, required this.otpCode});
+
+  @override
+  List<Object> get props => [phone, otpCode];
 }

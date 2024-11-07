@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -90,18 +89,18 @@ class _PestSeasonMainState extends State<PestSeasonMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pests Season'),
+        title: const Text('Pests Season'),
         actions: [
           IconButton(
             onPressed: _toggleCalendarVisible,
-            icon: Icon(Icons.calendar_month_sharp),
+            icon: const Icon(Icons.calendar_month_sharp),
           ),
         ],
       ),
       body: Column(
         children: [
           if (_isCalendarVisible)
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height / 2.2,
               child: TableCalendar(
                 firstDay: DateTime.utc(2001, 4, 22),
@@ -131,9 +130,9 @@ class _PestSeasonMainState extends State<PestSeasonMain> {
             ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1, // Adjust the cross axis count as needed
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
@@ -150,16 +149,16 @@ class _PestSeasonMainState extends State<PestSeasonMain> {
                       _selectPestName(card['pestName']),
                     },
                     child: Card(
-                      color: Color(0xffbcd7ed),
+                      color: const Color(0xffbcd7ed),
                       elevation: 5,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(20.0),
+                            padding: const EdgeInsets.all(20.0),
                             child: Text(
                               '${card['month']} - ${card['pestName']}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16.0, fontWeight: FontWeight.w800),
                             ),
                           ),
@@ -178,17 +177,17 @@ class _PestSeasonMainState extends State<PestSeasonMain> {
                                     builder: (context, snapshot) {
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
-                                        return Center(
+                                        return const Center(
                                           child: Text('Loading...'),
                                         );
                                       } else if (snapshot.hasError) {
-                                        return Icon(
+                                        return const Icon(
                                           Icons.broken_image_outlined,
                                           size: 100.0,
                                         );
                                       } else {
                                         return Padding(
-                                            padding: EdgeInsets.all(10.0),
+                                            padding: const EdgeInsets.all(10.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(15.0),

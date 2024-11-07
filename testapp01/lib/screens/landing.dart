@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testapp01/screens/userAuth/languageSelection.dart';
-import 'package:testapp01/screens/userAuth/phoneVerify.dart';
-import 'package:testapp01/screens/objectdetection/resultPage.dart';
-import 'package:testapp01/screens/userAuth/userverify.dart';
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -16,7 +13,7 @@ class _LandingState extends State<Landing> {
   void _navigateToPhoneVerify(BuildContext context) async{
    SharedPreferences prefs = await SharedPreferences.getInstance();
    await prefs.setBool('isFirstTime', false);
-   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LanguageSelection()));
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LanguageSelection()));
    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Userverification()));
    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ResultPage()));
   }

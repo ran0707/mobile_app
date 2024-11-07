@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:testapp01/screens/userAuth/languageSelection.dart';
 import 'package:testapp01/screens/userAuth/userverify.dart';
-import '../userAuth/phoneVerify.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -20,13 +19,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
 Future<void> _logout() async{
-  await Future.delayed(Duration(seconds: 2));
-  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>  LanguageSelection()));
+  await Future.delayed(const Duration(seconds: 2));
+  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>  const LanguageSelection()));
 }
 
   void _handleLocationTap(){
 
-    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserVerification()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const UserVerification()));
   }
 
   void _handleDroneServiceTap(){}
@@ -38,7 +37,7 @@ Future<void> _logout() async{
         title: const Text('profile'),
           actions: [
             IconButton(
-                icon: CircleAvatar(
+                icon: const CircleAvatar(
                     backgroundColor: Color(0xfef35158),
                     child:Icon(CupertinoIcons.power, color: Color(0xfeffffff),)
                 ),
@@ -57,7 +56,7 @@ Future<void> _logout() async{
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffe4e4e4)),
+                border: Border.all(color: const Color(0xffe4e4e4)),
                 borderRadius:BorderRadius.circular(50.0),
 
               ),
@@ -66,7 +65,7 @@ Future<void> _logout() async{
                   Container(
                     width: 60.0,
                     height: 60.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xffeaddff),
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -106,20 +105,20 @@ Future<void> _logout() async{
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text('General', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                 const Text('General', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
                const SizedBox(height: 18.0,),
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffe4e4e4)),
+                      border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Location', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),
@@ -134,15 +133,15 @@ Future<void> _logout() async{
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffe4e4e4)),
+                    border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Drone service', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),
@@ -156,15 +155,15 @@ Future<void> _logout() async{
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffe4e4e4)),
+                    border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Language', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),
@@ -178,15 +177,15 @@ Future<void> _logout() async{
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffe4e4e4)),
+                    border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('My Activity', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),
@@ -202,20 +201,20 @@ Future<void> _logout() async{
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('support', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                const Text('support', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
                 const SizedBox(height: 18.0,),
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffe4e4e4)),
+                    border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Support', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),
@@ -229,15 +228,15 @@ Future<void> _logout() async{
                 Container(
                   height: 60.0,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffe4e4e4)),
+                    border: Border.all(color: const Color(0xffe4e4e4)),
                     borderRadius:BorderRadius.circular(5.0),
                     //color: Color(0xffe4e4e4)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: _handleLocationTap,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('About', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),),

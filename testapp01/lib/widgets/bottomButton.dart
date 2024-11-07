@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 
 
@@ -9,11 +8,11 @@ class BottomButton extends StatefulWidget {
   final Function(int) onItemTapped;
   final Function onCameraPressed;
 
-  const BottomButton({ Key?key,
+  const BottomButton({ super.key,
     required this.selectedIndex,
     required this.onItemTapped,
     required this.onCameraPressed,
-  }) : super (key: key);
+  });
 
   @override
   State<BottomButton> createState() => _BottomButtonState();
@@ -26,7 +25,7 @@ class _BottomButtonState extends State<BottomButton> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: SizedBox(
           height: 60.0,
@@ -36,7 +35,7 @@ class _BottomButtonState extends State<BottomButton> {
             children:<Widget> [
               _buildBottomNavigationItem(Icons.home, "Home", 0),
               _buildBottomNavigationItem(CupertinoIcons.tree, "Cultivation", 1),
-              SizedBox(width: 40.0,),
+              const SizedBox(width: 40.0,),
               _buildBottomNavigationItem(CupertinoIcons.group_solid, "community", 2),
               _buildBottomNavigationItem(CupertinoIcons.shopping_cart, "vendors", 3),
             ],

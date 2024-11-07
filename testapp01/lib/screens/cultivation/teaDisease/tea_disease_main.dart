@@ -14,7 +14,7 @@ class _TeaDiseaseMainState extends State<TeaDiseaseMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('item.title'),
+        title: const Text('item.title'),
       ),
 
     );

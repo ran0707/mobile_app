@@ -1,6 +1,5 @@
 // location_event.dart
 import 'package:equatable/equatable.dart';
-import 'package:testapp01/screens/userAuth/userverify.dart';
 
 abstract class LocationEvent extends Equatable {
   const LocationEvent();

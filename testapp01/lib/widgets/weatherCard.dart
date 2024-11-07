@@ -1,11 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 import 'package:testapp01/screens/weather/weatherForecasting.dart';
 import 'package:testapp01/services/weather_service.dart';
-import 'package:testapp01/screens/weather/weather_utils/weather_image.dart';
 import 'package:testapp01/screens/weather/weather_models/weather.dart';
 
 class WeatherCard extends StatefulWidget {
@@ -57,7 +53,7 @@ class _WeatherCardState extends State<WeatherCard> {
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error fetching weather')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Error fetching weather')));
     } finally {
       setState(() {
         _isLoading = false;
@@ -80,8 +76,8 @@ class _WeatherCardState extends State<WeatherCard> {
         padding: const EdgeInsets.all(10.0),
         width: double.infinity,
         child: Card(
-          color: Color(0xffd2e3fc),
-          shape: StadiumBorder(
+          color: const Color(0xffd2e3fc),
+          shape: const StadiumBorder(
             side: BorderSide(
               color: Color(0xff6087ed),
               width: 1.0,
@@ -101,7 +97,7 @@ class _WeatherCardState extends State<WeatherCard> {
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           CupertinoIcons.location_solid,
                           size: 16.0,
                           color: Color(0xff4a4a4a),
@@ -112,12 +108,12 @@ class _WeatherCardState extends State<WeatherCard> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10.0,),
+                    const SizedBox(height: 10.0,),
                     Padding(
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        "${weather!.description}",
-                        style: TextStyle(fontSize: 12.0),
+                        weather!.description,
+                        style: const TextStyle(fontSize: 12.0),
                       ),
                     ),
                   ],
@@ -132,7 +128,7 @@ class _WeatherCardState extends State<WeatherCard> {
                             "${_temperatureCelcius.toStringAsFixed(1)}°C",
                             style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                           ),
-                          SizedBox(width: 10.0),
+                          const SizedBox(width: 10.0),
                           // Image.asset(
                           //   getWeatherImage(weather!.conditionCode), // Add your images in the assets folder
                           //   width: 30,

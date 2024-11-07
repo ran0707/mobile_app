@@ -1,18 +1,32 @@
-// otp_verification_state.dart
-abstract class OtpVerificationState {}
+// lib/bloc/otp_verification/otp_verification_state.dart
 
-class OtpInitial extends OtpVerificationState {}
+import 'package:equatable/equatable.dart';
 
-class OtpSending extends OtpVerificationState {}
+abstract class OtpVerificationState extends Equatable {
+  const OtpVerificationState();
 
-class OtpSent extends OtpVerificationState {}
+  @override
+  List<Object> get props => [];
+}
+
+class OtpVerificationInitial extends OtpVerificationState {}
 
 class OtpVerificationLoading extends OtpVerificationState {}
 
-class OtpVerificationSuccess extends OtpVerificationState {}
+class OtpVerificationSuccess extends OtpVerificationState {
+  final String message;
+
+  const OtpVerificationSuccess({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
 
 class OtpVerificationFailure extends OtpVerificationState {
   final String error;
 
-  OtpVerificationFailure(this.error);
+  const OtpVerificationFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

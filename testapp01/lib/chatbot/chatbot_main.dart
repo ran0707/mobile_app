@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:flutter_chat_bubble/bubble_type.dart';
-import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 
 class ChatBotMain extends StatefulWidget {
   const ChatBotMain({super.key});
@@ -33,19 +31,19 @@ class _ChatBotMainState extends State<ChatBotMain> {
   }
 
   Future<void> _simulateResponse(String message) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     setState(() {
       final response = _handleGreeting(message) ?? "What can I help you with?";
       _messages.add({"text": response, "isSentByMe": false});
       if (_greetings.contains(message)) {
-        _suggestion.forEach((suggestion) {
+        for (var suggestion in _suggestion) {
           _messages.add({
             "text": suggestion,
             "isSentByMe": false,
             "isSuggestion": true,
             "isClickable":true
           });
-        });
+        }
       }
     });
   }
@@ -76,7 +74,7 @@ class _ChatBotMainState extends State<ChatBotMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Green Camellia chat'),
+        title: const Text('Green Camellia chat'),
       ),
       body: Column(
         children: <Widget>[
@@ -88,19 +86,19 @@ class _ChatBotMainState extends State<ChatBotMain> {
                 final message = _messages[_messages.length - 1 - index];
                 if(message["isClickable"] == true){
                   return Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: ()=> _handleSuggestionClick(message["text"]),
                       child: IntrinsicWidth(
                         child: Container(
-                          padding: EdgeInsets.all(14.0),
+                          padding: const EdgeInsets.all(14.0),
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.blueAccent),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Text(
                             message["text"],
-                            style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
+                            style: const TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -116,7 +114,7 @@ class _ChatBotMainState extends State<ChatBotMain> {
                   alignment: message["isSentByMe"]
                       ? Alignment.topRight
                       : Alignment.topLeft,
-                  margin: EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 20),
                   backGroundColor: message["isSentByMe"]
                       ? Colors.blueAccent
                       : Colors.grey[200],
@@ -137,7 +135,7 @@ class _ChatBotMainState extends State<ChatBotMain> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -152,7 +150,7 @@ class _ChatBotMainState extends State<ChatBotMain> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send_rounded),
+                  icon: const Icon(Icons.send_rounded),
                   onPressed: () => _sendMessage(_controller.text),
                 ),
               ],
