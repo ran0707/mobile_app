@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testapp01/screens/dashboard/home.dart';
 import '../../bloc/language_selection/language_bloc.dart';
 import '../../bloc/language_selection/language_event.dart';
 import '../../bloc/language_selection/language_state.dart';
@@ -9,7 +10,7 @@ import 'phoneVerify.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LanguageSelection extends StatelessWidget {
-  const LanguageSelection({Key? key}) : super(key: key);
+  const LanguageSelection({super.key});
 
   Future<void> _selectLanguage(
       BuildContext context, String languageCode) async {
@@ -19,6 +20,7 @@ class LanguageSelection extends StatelessWidget {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => const PhoneVerification(),
+        //builder: (context) => const Home(locality: '',),
       ),
     );
   }

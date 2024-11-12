@@ -12,8 +12,7 @@ abstract class LanguageState extends Equatable {
 }
 
 class LanguageInitial extends LanguageState {
-  const LanguageInitial({String selectedLanguage = 'en'})
-      : super(selectedLanguage: selectedLanguage);
+  const LanguageInitial({super.selectedLanguage = 'en'});
 }
 
 class LanguageSelected extends LanguageState {

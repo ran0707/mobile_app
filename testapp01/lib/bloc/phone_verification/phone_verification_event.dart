@@ -12,20 +12,9 @@ abstract class PhoneVerificationEvent extends Equatable {
 class RegisterUser extends PhoneVerificationEvent {
   final String name;
   final String phone;
-  final String address;
-  final String city;
-  final String state;
-  final String country;
 
-  const RegisterUser({
-    required this.name,
-    required this.phone,
-    required this.address,
-    required this.city,
-    required this.state,
-    required this.country,
-  });
+  const RegisterUser({required this.name, required this.phone});
 
   @override
-  List<Object> get props => [name, phone, address, city, state, country];
+  List<Object> get props => [name, phone];
 }

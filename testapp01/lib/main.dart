@@ -8,17 +8,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Import your Blocs
-import 'package:testapp01/bloc/otp_verification/otp_verification_bloc.dart';
-import 'package:testapp01/bloc/phone_verification/phone_verification_bloc.dart';
-import 'package:testapp01/bloc/language_selection/language_bloc.dart';
+import 'bloc/otp_verification/otp_verification_bloc.dart';
+import 'bloc/phone_verification/phone_verification_bloc.dart';
+import 'bloc/language_selection/language_bloc.dart';
 
 // Import your Screens
-import 'package:testapp01/screens/landing.dart';
-import 'package:testapp01/screens/userAuth/languageSelection.dart';
+import 'screens/landing.dart';
+import 'screens/userAuth/languageSelection.dart';
 
 // Import your Services
-import 'package:testapp01/services/api_services.dart';
+import 'services/api_services.dart';
 
+// Import Language Events and States
 import 'bloc/language_selection/language_event.dart';
 import 'bloc/language_selection/language_state.dart';
 
@@ -40,8 +41,8 @@ void main() async {
 
   // Instantiate ApiService with your backend base URL
   final ApiService apiService = ApiService(
-    baseUrl: 'https://your-backend.com', // TODO: Replace with your actual backend URL
-    // Removed textlocalApiKey as it's no longer needed
+    baseUrl: 'http://10.0.2.2:3000/api/farmers', // For Android Emulator
+    // For iOS Simulator or Physical Device, replace with your machine's IP, e.g., 'http://192.168.1.100:3000/api/farmers'
   );
 
   runApp(MyApp(
@@ -57,11 +58,11 @@ class MyApp extends StatelessWidget {
   final ApiService apiService;
 
   const MyApp({
-    Key? key,
+    super.key,
     required this.isFirstTime,
     required this.selectedLanguage,
     required this.apiService,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -117,19 +118,17 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             theme: ThemeData(
-              colorScheme: ColorScheme.light().copyWith(
+              colorScheme: const ColorScheme.light().copyWith(
                 primary: primaryColor,
                 onPrimary: onPrimaryColor,
                 secondary: secondaryColor,
                 surface: neutralColor,
-                background: neutralColor,
                 error: Colors.red,
                 onSecondary: Colors.black,
                 onSurface: Colors.black,
-                onBackground: Colors.black,
                 onError: Colors.white,
               ),
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 bodyLarge: TextStyle(color: Colors.black),
                 bodyMedium: TextStyle(color: Colors.black),
                 // Define other text styles as needed
@@ -141,8 +140,8 @@ class MyApp extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                labelStyle: TextStyle(color: primaryColor),
-                focusedBorder: OutlineInputBorder(
+                labelStyle: const TextStyle(color: primaryColor),
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: primaryColor),
                 ),
               ),
@@ -158,7 +157,7 @@ class MyApp extends StatelessWidget {
               outlinedButtonTheme: OutlinedButtonThemeData(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: primaryColor, // Button text color
-                  side: BorderSide(color: primaryColor),
+                  side: const BorderSide(color: primaryColor),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

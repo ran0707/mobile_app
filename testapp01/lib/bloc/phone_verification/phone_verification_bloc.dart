@@ -1,45 +1,36 @@
 // lib/bloc/phone_verification/phone_verification_bloc.dart
 
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../services/api_services.dart';
 import 'phone_verification_event.dart';
 import 'phone_verification_state.dart';
 
-class PhoneVerificationBloc extends Bloc<PhoneVerificationEvent, PhoneVerificationState> {
+class PhoneVerificationBloc
+    extends Bloc<PhoneVerificationEvent, PhoneVerificationState> {
   final ApiService apiService;
 
-  PhoneVerificationBloc({required this.apiService}) : super(PhoneVerificationInitial()) {
+  PhoneVerificationBloc({required this.apiService})
+      : super(PhoneVerificationInitial()) {
     on<RegisterUser>(_onRegisterUser);
   }
 
   Future<void> _onRegisterUser(
-      RegisterUser event,
-      Emitter<PhoneVerificationState> emit,
-      ) async {
+      RegisterUser event, Emitter<PhoneVerificationState> emit) async {
     emit(PhoneVerificationLoading());
 
     try {
-      final response = await apiService.registerUser(
-        name: event.name,
-        phone: event.phone,
-        address: event.address,
-        city: event.city,
-        state: event.state,
-        country: event.country,
-      );
+      final response = await apiService.sendOtp(event.name, event.phone);
 
-      if (response.statusCode == 200) {
-        final responseData = json.decode(response.body);
-        emit(PhoneVerificationSuccess(message: responseData['message'] ?? 'OTP sent successfully.'));
+      if (response['message'] == 'OTP sent successfully.') {
+        emit(PhoneVerificationSuccess(message: response['message']));
       } else {
-        final responseData = json.decode(response.body);
-        emit(PhoneVerificationFailure(error: responseData['message'] ?? 'Failed to send OTP.'));
+        emit(PhoneVerificationFailure(
+            error: response['message'] ?? 'Failed to send OTP.'));
       }
-    } catch (error) {
-      emit(PhoneVerificationFailure(error: 'An error occurred. Please try again.'));
+    } catch (e) {
+      emit(PhoneVerificationFailure(
+          error: 'An error occurred while sending OTP.'));
     }
   }
 }
